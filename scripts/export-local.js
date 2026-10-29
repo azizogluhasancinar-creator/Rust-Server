@@ -1,0 +1,14 @@
+import { readFile, mkdir, writeFile } from 'node:fs/promises';
+const root = new URL('../', import.meta.url);
+const read = name => readFile(new URL(name, root), 'utf8');
+const [html, css, data, app] = await Promise.all(['index.html','style.css','data.js','app.js'].map(read));
+// Inline the app so file:// works without module requests or a local server.
+const localCss = css.replace(/^@import\s+url\([^;]+;\s*/gm, '');
+const localScript = data.replace(/^export /gm, '') + '\n' + app.replace(/^import .*?;\s*/m, '');
+const output = html
+  .replace('<link rel="stylesheet" href="/style.css">', () => `<style>${localCss}</style>`)
+  .replaceAll('href="/"', 'href="#"')
+  .replace('<script type="module" src="/app.js"></script>', () => `<script>${localScript.replaceAll('</script', '<\\/script')}</script>`);
+await mkdir(new URL('dist/', root), { recursive:true });
+await writeFile(new URL('dist/Wipe-Radar.html', root), output);
+console.log('Hazır: dist/Wipe-Radar.html — tarayıcıda çift tıklayarak açabilirsin.');
