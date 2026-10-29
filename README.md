@@ -43,3 +43,15 @@ Bu adres ancak GitHub Pages etkinleştirilip dağıtım tamamlandıktan sonra ç
 Geçmiş veri örnekleri 7/14/30 günlük wipe süresinin tamamını saatlik aralıklarla kapsar (başlangıç ve bitiş dahil 169/337/721 nokta). Aynı boyuttaki grafikler süreye göre yatayda ölçeklenir. Üç wipe ortalaması, aynı geçen saatteki değerlerin ortalamasıdır. Fare imleci veya klavyeyle erişilebilir saat kaydırıcısı oyuncu sayısını gösterir.
 
 `assets/rust-landscape.png`, kullanıcının gönderdiği manzara referans alınarak yapay zekâyla yeniden üretilmiş 1672×940 arka plandır; orijinal oyundan alınmış yüksek çözünürlüklü resmî bir görsel olduğu iddia edilmez. Siyah katman CSS ile uygulanır. Pages derlemesi görseli yerel varlık olarak kopyalar; tek HTML dışa aktarımı görseli dosyaya gömer. Harici font veya resim servisi gerekmez.
+
+## Takım sınırı, harita ve wipe takvimi
+
+62 örnek kayıt vardır: önceki 12 kayıt + 50 aday kayıt. EU/NA ağırlıklıdır; Türkiye filtresinde Cumhuriyet de bulunur. **Yeni adayların varlığı, IP adresleri ve gerçek popülerlik sırası doğrulanmamıştır.** Sunucu adları araştırma adaylarıdır; sayısal değerler ve özellikler örnek senaryolardır. Varsayılan sıralama örnek oyuncu sayısı azalan sıradadır. Kaynak doğrulanmadan gerçek IP yazılmaz; kartta “IP not verified” görünür. Doğrulanmış `address` olduğunda kartta gösterme/kopyalama arayüzü hazırdır.
+
+Varsayılan dil İngilizce; açıkça kaydedilmiş Türkçe tercihi korunur. Solo/Duo/Trio/Quad, x oranı, sunucu türü ve bölge filtreleri birlikte uygulanır. Kartın tamamı ve klavyeyle odaklanılan kart düğmesi detayları açar. Favori ve IP düğmeleri bağımsızdır.
+
+Harita etiketleri: 3000 m altı XSmall; 3000–3499 Small; 3500–4000 Medium; 4001–4999 Large; 5000 ve üstü XLarge. Detaylarda gerçek sayısal alan ve harita seed'i ayrı gösterilir. Seed bir harita oluşturma sayısıdır; IP değildir. Mevcut harita değerleri demo verisidir.
+
+Geri sayımlar sabit `catalogSnapshotAt` UTC anına bağlanan örnek takvimden hesaplanır; sayfa yenilendiğinde sıfırlanmaz ve her saniye güncellenir. Periyot bitiminde mevcut/sonraki wipe ve BP döngüsü ilerler. `Map + blueprints` blueprint'lerin de silindiği map wipe'ı ifade eder. Bu takvimler sunucu sahiplerinden doğrulanmış gerçek zamanlar değildir. Tarihler ziyaretçinin tarayıcı saat diliminde, saat dilimi adıyla gösterilir.
+
+Gerçek 50 sunucunun IP ve popülerlik verisini edinmek için BattleMetrics isteği denendi; ortam proxy'si `403 Forbidden` döndürdü. `api.battlemetrics.com` ve `www.battlemetrics.com` alan adları ortam ayarları taslağına eklendi. Taslağın kaydı tek başına çalışan ortamın ağ politikasını değiştirmez; uygulanıp gerçek istek başarılı olduktan sonra doğrulama yapılmalıdır. Bu erişim sağlanmadan “en popüler 50 gerçek sunucu” tamamlanmış sayılmaz.
