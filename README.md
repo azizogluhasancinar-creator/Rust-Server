@@ -55,3 +55,7 @@ Harita etiketleri: 3000 m altı XSmall; 3000–3499 Small; 3500–4000 Medium; 4
 Geri sayımlar sabit `catalogSnapshotAt` UTC anına bağlanan örnek takvimden hesaplanır; sayfa yenilendiğinde sıfırlanmaz ve her saniye güncellenir. Periyot bitiminde mevcut/sonraki wipe ve BP döngüsü ilerler. `Map + blueprints` blueprint'lerin de silindiği map wipe'ı ifade eder. Bu takvimler sunucu sahiplerinden doğrulanmış gerçek zamanlar değildir. Tarihler ziyaretçinin tarayıcı saat diliminde, saat dilimi adıyla gösterilir.
 
 Gerçek 50 sunucunun IP ve popülerlik verisini edinmek için BattleMetrics isteği denendi; ortam proxy'si `403 Forbidden` döndürdü. `api.battlemetrics.com` ve `www.battlemetrics.com` alan adları ortam ayarları taslağına eklendi. Taslağın kaydı tek başına çalışan ortamın ağ politikasını değiştirmez; uygulanıp gerçek istek başarılı olduktan sonra doğrulama yapılmalıdır. Bu erişim sağlanmadan “en popüler 50 gerçek sunucu” tamamlanmış sayılmaz.
+
+## Doğrudan sunucu sorgulama
+
+A2S veri toplayıcısı, bağımlılığı, testleri ve gerçek veri/logo erişimindeki engeller [DATA-SOURCES.md](DATA-SOURCES.md) içinde belgelenmiştir. Toplayıcı henüz gerçek bir Rust sunucusuna karşı doğrulanmamıştır; site örnek veri kullanmaya devam eder.

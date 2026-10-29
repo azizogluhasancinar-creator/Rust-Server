@@ -1,3 +1,6 @@
 node_modules/
 *.log
 dist/
+__pycache__/
+.venv/
+data/observations.jsonl
