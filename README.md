@@ -59,3 +59,7 @@ Gerçek 50 sunucunun IP ve popülerlik verisini edinmek için BattleMetrics iste
 ## Doğrudan sunucu sorgulama
 
 A2S veri toplayıcısı, bağımlılığı, testleri ve gerçek veri/logo erişimindeki engeller [DATA-SOURCES.md](DATA-SOURCES.md) içinde belgelenmiştir. Toplayıcı henüz gerçek bir Rust sunucusuna karşı doğrulanmamıştır; site örnek veri kullanmaya devam eder.
+
+## Kaynak bağlantılı kayıtlar
+
+25 kayıt için Just-Wiped'in herkese açık sayfalarından alınan IP, oyuncu sayısı ve harita boyutu gözlemleri vardır. Varsayılan görünüm yalnızca bu kayıtları gösterir; örnekleri dahil et seçeneği 62 kayıtlık katalogun kalanını açar. Her gözlem kaynağına, alım zamanına ve kaynağın kendi son görülme bilgisine bağlıdır. Bunlar canlı A2S sorgusu veya doğrulanmış “en popüler 50” listesi değildir. Wipe grafikleri, seed ve gelecek takvimler örnek kalır. Rustafied'in resmî site ikonu uzaktan bağlanır; diğer logolar henüz doğrulanmadı. Ayrıntılar ve tekrar veri çekme komutu [DATA-SOURCES.md](DATA-SOURCES.md) içinde.

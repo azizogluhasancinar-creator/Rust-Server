@@ -8,6 +8,7 @@
 @media(max-width:950px){.topbar{gap:22px}.header-actions{gap:10px}.hero-copy h1{font-size:55px}.demo-pill{font-size:7px}.language-label select{width:117px}.workspace{grid-template-columns:215px 1fr}}@media(max-width:650px){body:before{background-position:40% top}.header-actions{gap:8px}.header-actions .demo-pill{display:none}.language-label select{width:112px;font-size:10px;padding:8px}.hero{min-height:330px}.hero-copy{width:100%;padding:25px 12px;background:linear-gradient(90deg,#090d1277,transparent)}.hero-copy h1{font-size:46px}.hero p{max-width:290px;font-size:12px}.landscape-label{display:none}.stats{padding:16px 5px}.workspace{grid-template-columns:1fr}.filters{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px 14px}.filter-field{margin:0;min-width:0}.filter-title{margin:0}.filter-field input[type=range]{display:block;width:100%}.filter-field label{font-size:8px;min-height:12px}.range-label{margin-top:10px}.filter-tip{display:none}.chart-heading{align-items:start;flex-direction:column;gap:6px}.chart-inspector{font-size:9px}.dialog-top h2{font-size:25px}.results-toolbar{gap:6px}.sort-label{gap:6px}.sort-label select{width:145px}}
 /* Entire cards open details; nested actions remain independent. */
 .server-card{cursor:pointer}.card-open{position:absolute;inset:0;width:100%;height:100%;z-index:1;border-radius:5px;padding:0;cursor:pointer}.card-open:focus-visible{outline:2px solid var(--orange);outline-offset:3px}.favorite{z-index:3}.detail-button[data-detail],.copy-address{position:relative;z-index:3}.server-address{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:11px 0;border-bottom:1px solid var(--line);font-size:9px;color:#aab4be}.server-address .unverified-ip{color:#c8aa8e;font-size:9px}.copy-address{padding:3px 0;font-family:monospace;font-size:11px;color:#e6c8a8;user-select:all}.wipe-info{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}.wipe-info span{display:block;color:#a1adb9;font-size:8px;margin-bottom:4px}.wipe-info strong{font-size:10px;font-weight:500;color:#e3e9eb}.countdown-row{display:flex;justify-content:space-between;gap:7px;align-items:center;margin-top:12px;font-size:9px;color:#aab4be}.countdown-row time{font:600 12px monospace;color:#efb287;font-variant-numeric:tabular-nums}.schedule-note{font-size:8px;color:#9c978e;text-align:right;margin:5px 0 18px}.card-bottom>span{font-size:8px}.detail-metadata{display:grid;grid-template-columns:1fr 1.5fr;gap:15px 20px;margin:20px 0 12px}.detail-metadata span,.detail-wipes span{display:block;color:#9caeba;font-size:10px;margin-bottom:6px}.detail-metadata strong{display:block;font-size:13px;font-weight:500}.detail-metadata small,.detail-wipes small{display:block;color:#a4afb8;font-size:9px;margin-top:6px}.seed-help{font-size:10px;color:#a4afb8;line-height:1.8;border-bottom:1px solid var(--line);padding-bottom:18px}.detail-wipes{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin:20px 0}.detail-wipes>div:last-child{grid-column:1/-1;display:flex;align-items:center;gap:14px;flex-wrap:wrap}.detail-wipes>div:last-child span{margin:0}.detail-wipes strong{font-size:13px;color:#edbf9c}.detail-wipes time{font:600 16px monospace;color:#edbf9c}.detail-wipes small{line-height:1.6}.demo-pill{color:#dfc6ad}.server-card .badge{font-size:8px}.server-card:has(.card-open:hover){border-color:#da9b6499}@media(max-width:650px){.detail-metadata{grid-template-columns:1fr 1fr}.detail-metadata strong{font-size:11px;overflow-wrap:anywhere}.detail-wipes time{font-size:14px}.countdown-row time{font-size:12px}.detail-button[data-detail]{padding:7px 0}.card-open{touch-action:pan-y}}
+.server-logo{position:relative;overflow:hidden}.server-logo img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;background:#11171b;padding:3px}.source-toggle{grid-column:1/-1;display:flex;align-items:start;gap:8px;font-size:10px;color:#c5b9ad;line-height:1.6;border-top:1px solid var(--line);padding-top:18px;margin-top:22px}.source-toggle input{accent-color:#efb287;margin-top:3px}.source-snapshot{display:flex;flex-direction:column;gap:4px;margin:12px 0 15px;color:#a5b1bb;font-size:8px;line-height:1.6;overflow-wrap:anywhere}.source-snapshot a{position:relative;z-index:3;color:#dfb28e;width:fit-content}.source-snapshot span{color:#9aa8b2}.source-server-name{font-size:11px;color:#c4ccd3;line-height:1.7;overflow-wrap:anywhere}.card-bottom{gap:10px}.card-bottom>span{max-width:55%;line-height:1.5}.detail-button{white-space:nowrap}@media(max-width:650px){.source-toggle{margin-top:0}.source-snapshot{font-size:9px}}
 </style></head>
 <body>
 <header class="topbar"><a class="brand" href="#" aria-label="Wipe Radar"><span class="brand-icon">◈</span> WIPE<span>RADAR</span><small>RUST SERVER DISCOVERY</small></a><nav data-i18n-aria="navigation"><button class="nav active" id="discover" data-i18n="discover"></button><button class="nav" id="favorites-tab"><span data-i18n="favorites"></span> <span id="favorite-count">0</span></button></nav><div class="header-actions"><div class="demo-pill"><i></i> <span data-i18n="demoMode"></span></div><label class="language-label"><span class="sr-only" data-i18n="language"></span><select id="language" aria-label="Language / Dil"><option value="en">EN · English</option><option value="tr">TR · Türkçe</option></select></label></div></header>
@@ -15,10 +16,455 @@
 <section class="hero"><div class="hero-copy"><div class="eyebrow"><span></span><b data-i18n="eyebrow"></b></div><h1><span data-i18n="headline"></span><br><em data-i18n="headlineAccent"></em></h1><p data-i18n="intro"></p><a class="hero-link" href="#explore"><b data-i18n="discover"></b><span>↗</span></a></div><div class="landscape-label"><i></i> THE NEXT WIPE IS YOURS.</div></section>
 <section class="stats" data-i18n-aria="summary"><div><span class="stat-icon">⌘</span><div><strong id="total-servers"></strong><span data-i18n="sampleServers"></span></div></div><div><span class="stat-icon">◉</span><div><strong id="total-players"></strong><span data-i18n="samplePlayers"></span></div></div><div><span class="stat-icon orange">ϟ</span><div><strong id="fresh-count"></strong><span data-i18n="freshWipes"></span></div></div><div class="stats-note"><i></i><b data-i18n="noLive"></b><br><span data-i18n="allDemo"></span></div></section>
 <section id="explore" class="explore"><div class="section-heading"><div><div class="eyebrow muted" data-i18n="adventure"></div><h2 id="section-title"></h2></div><span class="section-caption" data-i18n="caption"></span></div>
-<div class="workspace"><aside class="filters"><div class="filter-title">⌁ <strong data-i18n="filters"></strong><button id="reset" data-i18n="reset"></button></div><div class="filter-field"><label for="search" data-i18n="searchLabel"></label><div class="search-wrap"><span>⌕</span><input id="search" type="search" data-i18n-placeholder="searchPlaceholder"></div></div><div class="filter-field"><label for="region" data-i18n="region"></label><select id="region"><option value="all" data-i18n="allRegions"></option><option value="EU" data-i18n="EU"></option><option value="TR" data-i18n="TR"></option><option value="NA" data-i18n="NA"></option><option value="AS" data-i18n="AS"></option><option value="OC" data-i18n="OC"></option><option value="SA" data-i18n="SA"></option></select></div><div class="filter-field"><label for="capacity"><span data-i18n="capacity"></span><output id="capacity-label">2000</output></label><input id="capacity" type="range" min="100" max="2000" step="50" value="2000"><div class="range-label"><span>100</span><span>2000</span></div></div><div class="filter-field"><label for="wipe" data-i18n="wipeInterval"></label><select id="wipe"><option value="all" data-i18n="allWipes"></option><option value="7" data-i18n="weekly"></option><option value="14" data-i18n="fortnightly"></option><option value="30" data-i18n="monthly"></option></select></div><div class="filter-field"><label for="rate" data-i18n="gatherRate"></label><select id="rate"><option value="all" data-i18n="allRates"></option><option value="1">1x</option><option value="1.5">1.5x</option><option value="2">2x</option><option value="3">3x</option><option value="5">5x</option><option value="10">10x</option></select></div><div class="filter-field"><label for="type" data-i18n="serverType"></label><select id="type"><option value="all" data-i18n="allTypes"></option><option value="vanilla" data-i18n="vanilla"></option><option value="modded" data-i18n="modded"></option></select></div><div class="filter-field"><label for="team" data-i18n="teamLimit"></label><select id="team"><option value="all" data-i18n="allTeams"></option><option value="1">Solo</option><option value="2">Duo</option><option value="3">Trio</option><option value="4">Quad</option></select></div><div class="filter-tip"><span>↗</span><strong data-i18n="tipTitle"></strong><p data-i18n="tip"></p></div></aside>
+<div class="workspace"><aside class="filters"><div class="filter-title">⌁ <strong data-i18n="filters"></strong><button id="reset" data-i18n="reset"></button></div><div class="filter-field"><label for="search" data-i18n="searchLabel"></label><div class="search-wrap"><span>⌕</span><input id="search" type="search" data-i18n-placeholder="searchPlaceholder"></div></div><div class="filter-field"><label for="region" data-i18n="region"></label><select id="region"><option value="all" data-i18n="allRegions"></option><option value="EU" data-i18n="EU"></option><option value="TR" data-i18n="TR"></option><option value="NA" data-i18n="NA"></option><option value="AS" data-i18n="AS"></option><option value="OC" data-i18n="OC"></option><option value="SA" data-i18n="SA"></option></select></div><div class="filter-field"><label for="capacity"><span data-i18n="capacity"></span><output id="capacity-label">2000</output></label><input id="capacity" type="range" min="100" max="2000" step="50" value="2000"><div class="range-label"><span>100</span><span>2000</span></div></div><div class="filter-field"><label for="wipe" data-i18n="wipeInterval"></label><select id="wipe"><option value="all" data-i18n="allWipes"></option><option value="7" data-i18n="weekly"></option><option value="14" data-i18n="fortnightly"></option><option value="30" data-i18n="monthly"></option></select></div><div class="filter-field"><label for="rate" data-i18n="gatherRate"></label><select id="rate"><option value="all" data-i18n="allRates"></option><option value="1">1x</option><option value="1.5">1.5x</option><option value="2">2x</option><option value="3">3x</option><option value="5">5x</option><option value="10">10x</option></select></div><div class="filter-field"><label for="type" data-i18n="serverType"></label><select id="type"><option value="all" data-i18n="allTypes"></option><option value="vanilla" data-i18n="vanilla"></option><option value="modded" data-i18n="modded"></option></select></div><div class="filter-field"><label for="team" data-i18n="teamLimit"></label><select id="team"><option value="all" data-i18n="allTeams"></option><option value="1">Solo</option><option value="2">Duo</option><option value="3">Trio</option><option value="4">Quad</option></select></div><label class="source-toggle"><input id="include-demo" type="checkbox"><span data-i18n="includeDemo"></span></label><div class="filter-tip"><span>↗</span><strong data-i18n="tipTitle"></strong><p data-i18n="tip"></p></div></aside>
 <div class="results"><div class="results-toolbar"><div aria-live="polite"><strong id="result-count"></strong> <span data-i18n="found"></span></div><label class="sort-label"><span data-i18n="sort"></span><select id="sort"><option value="players" data-i18n="sortPlayers"></option><option value="fresh" data-i18n="sortFresh"></option><option value="capacity" data-i18n="sortCapacity"></option></select></label></div><div id="server-grid" class="server-grid"></div><div class="results-foot"><span>●</span> <b data-i18n="listNote"></b></div></div></div></section>
 </main><footer><a class="footer-brand" href="#">◈ WIPE RADAR</a><span data-i18n="footerTag"></span><span data-i18n="disclaimer"></span></footer>
-<dialog id="server-dialog"><div id="dialog-content"></div></dialog><script>const specs = [
+<dialog id="server-dialog"><div id="dialog-content"></div></dialog><script>// Public source observations. Retrieval time is not the game-server query time.
+const directoryObservations = {
+  "rustoria": {
+    "source": "Just-Wiped public listing",
+    "sourceUrl": "https://just-wiped.net/rust_servers/3273101",
+    "sourceId": "3273101",
+    "sourceName": "Rustoria.co - EU Main",
+    "players": 750,
+    "capacity": 625,
+    "retrievedAt": "2026-10-29T17:19:34.381433+00:00",
+    "mapSize": 4250,
+    "country": "FR",
+    "sourceOfficial": true,
+    "address": "51.68.55.162:28015",
+    "lastSeenText": "8 minutes ago",
+    "sourceInactive": false,
+    "ownershipVerified": false,
+    "provenance": "Public third-party listing; not queried directly from game server"
+  },
+  "rustafied": {
+    "source": "Just-Wiped public listing",
+    "sourceUrl": "https://just-wiped.net/rust_servers/2245314",
+    "sourceId": "2245314",
+    "sourceName": "Rustafied.com - EU Monday",
+    "players": 250,
+    "capacity": 350,
+    "retrievedAt": "2026-10-29T17:19:34.875576+00:00",
+    "mapSize": 4000,
+    "country": "GB",
+    "sourceOfficial": true,
+    "address": "195.60.166.151:28018",
+    "lastSeenText": "2 minutes ago",
+    "sourceInactive": false,
+    "ownershipVerified": false,
+    "provenance": "Public third-party listing; not queried directly from game server"
+  },
+  "stevious": {
+    "source": "Just-Wiped public listing",
+    "sourceUrl": "https://just-wiped.net/rust_servers/3022639",
+    "sourceId": "3022639",
+    "sourceName": "[US] Stevious 2x Main | Vanilla | 10/22",
+    "players": 8,
+    "capacity": 200,
+    "retrievedAt": "2026-10-29T17:19:34.545760+00:00",
+    "mapSize": 3950,
+    "country": "US",
+    "sourceOfficial": false,
+    "address": "168.100.163.72:28015",
+    "lastSeenText": "5 minutes ago",
+    "sourceInactive": false,
+    "ownershipVerified": false,
+    "provenance": "Public third-party listing; not queried directly from game server"
+  },
+  "candidate-1": {
+    "source": "Just-Wiped public listing",
+    "sourceUrl": "https://just-wiped.net/rust_servers/2780478",
+    "sourceId": "2780478",
+    "sourceName": "Rustoria.co - US Main",
+    "players": 28,
+    "capacity": 250,
+    "retrievedAt": "2026-10-29T17:19:36.003151+00:00",
+    "mapSize": 4500,
+    "country": "US",
+    "sourceOfficial": true,
+    "address": "208.103.169.97:28015",
+    "lastSeenText": "8 minutes ago",
+    "sourceInactive": false,
+    "ownershipVerified": false,
+    "provenance": "Public third-party listing; not queried directly from game server"
+  },
+  "candidate-3": {
+    "source": "Just-Wiped public listing",
+    "sourceUrl": "https://just-wiped.net/rust_servers/3273180",
+    "sourceId": "3273180",
+    "sourceName": "Rustoria.co - EU Medium",
+    "players": 507,
+    "capacity": 525,
+    "retrievedAt": "2026-10-29T17:19:35.970212+00:00",
+    "mapSize": 4250,
+    "country": "FR",
+    "sourceOfficial": true,
+    "address": "5.135.173.207:28015",
+    "lastSeenText": "1 minute ago",
+    "sourceInactive": false,
+    "ownershipVerified": false,
+    "provenance": "Public third-party listing; not queried directly from game server"
+  },
+  "candidate-5": {
+    "source": "Just-Wiped public listing",
+    "sourceUrl": "https://just-wiped.net/rust_servers/2245446",
+    "sourceId": "2245446",
+    "sourceName": "Rustafied.com - EU Main",
+    "players": 750,
+    "capacity": 550,
+    "retrievedAt": "2026-10-29T17:19:36.452017+00:00",
+    "mapSize": 4500,
+    "country": "GB",
+    "sourceOfficial": true,
+    "address": "195.60.166.128:28018",
+    "lastSeenText": "10 minutes ago",
+    "sourceInactive": false,
+    "ownershipVerified": false,
+    "provenance": "Public third-party listing; not queried directly from game server"
+  },
+  "candidate-9": {
+    "source": "Just-Wiped public listing",
+    "sourceUrl": "https://just-wiped.net/rust_servers/2245464",
+    "sourceId": "2245464",
+    "sourceName": "Rustafied.com - EU Trio",
+    "players": 585,
+    "capacity": 600,
+    "retrievedAt": "2026-10-29T17:19:36.823320+00:00",
+    "mapSize": 4000,
+    "country": "GB",
+    "sourceOfficial": true,
+    "address": "195.60.166.152:28018",
+    "lastSeenText": "less than a minute ago",
+    "sourceInactive": false,
+    "ownershipVerified": false,
+    "provenance": "Public third-party listing; not queried directly from game server"
+  },
+  "candidate-11": {
+    "source": "Just-Wiped public listing",
+    "sourceUrl": "https://just-wiped.net/rust_servers/2399896",
+    "sourceId": "2399896",
+    "sourceName": "Rustafied.com - EU Small",
+    "players": 342,
+    "capacity": 350,
+    "retrievedAt": "2026-10-29T17:19:37.080029+00:00",
+    "mapSize": 3750,
+    "country": "GB",
+    "sourceOfficial": true,
+    "address": "64.40.9.94:28018",
+    "lastSeenText": "6 minutes ago",
+    "sourceInactive": false,
+    "ownershipVerified": false,
+    "provenance": "Public third-party listing; not queried directly from game server"
+  },
+  "candidate-12": {
+    "source": "Just-Wiped public listing",
+    "sourceUrl": "https://just-wiped.net/rust_servers/2122486",
+    "sourceId": "2122486",
+    "sourceName": "Rustafied.com - US Small",
+    "players": 16,
+    "capacity": 100,
+    "retrievedAt": "2026-10-29T17:19:37.638190+00:00",
+    "mapSize": 3750,
+    "country": "US",
+    "sourceOfficial": true,
+    "address": "104.143.2.215:28018",
+    "lastSeenText": "10 minutes ago",
+    "sourceInactive": false,
+    "ownershipVerified": false,
+    "provenance": "Public third-party listing; not queried directly from game server"
+  },
+  "candidate-15": {
+    "source": "Just-Wiped public listing",
+    "sourceUrl": "https://just-wiped.net/rust_servers/3273078",
+    "sourceId": "3273078",
+    "sourceName": "Rusty Moose |EU Main|",
+    "players": 750,
+    "capacity": 250,
+    "retrievedAt": "2026-10-29T17:19:37.787778+00:00",
+    "mapSize": 4500,
+    "country": "GB",
+    "sourceOfficial": true,
+    "address": "64.40.9.248:28015",
+    "lastSeenText": "3 minutes ago",
+    "sourceInactive": false,
+    "ownershipVerified": false,
+    "provenance": "Public third-party listing; not queried directly from game server"
+  },
+  "candidate-16": {
+    "source": "Just-Wiped public listing",
+    "sourceUrl": "https://just-wiped.net/rust_servers/3025916",
+    "sourceId": "3025916",
+    "sourceName": "Rusty Moose |US Main|",
+    "players": 38,
+    "capacity": 250,
+    "retrievedAt": "2026-10-29T17:19:37.963543+00:00",
+    "mapSize": 4500,
+    "country": "US",
+    "sourceOfficial": true,
+    "address": "205.178.168.84:28015",
+    "lastSeenText": "7 minutes ago",
+    "sourceInactive": false,
+    "ownershipVerified": false,
+    "provenance": "Public third-party listing; not queried directly from game server"
+  },
+  "candidate-18": {
+    "source": "Just-Wiped public listing",
+    "sourceUrl": "https://just-wiped.net/rust_servers/2945062",
+    "sourceId": "2945062",
+    "sourceName": "Rusty Moose |US Biweekly|",
+    "players": 23,
+    "capacity": 200,
+    "retrievedAt": "2026-10-29T17:19:38.512531+00:00",
+    "mapSize": 4500,
+    "country": "US",
+    "sourceOfficial": true,
+    "address": "208.103.169.185:28015",
+    "lastSeenText": "6 minutes ago",
+    "sourceInactive": false,
+    "ownershipVerified": false,
+    "provenance": "Public third-party listing; not queried directly from game server"
+  },
+  "candidate-19": {
+    "source": "Just-Wiped public listing",
+    "sourceUrl": "https://just-wiped.net/rust_servers/2741886",
+    "sourceId": "2741886",
+    "sourceName": "Rusty Moose |EU Biweekly|",
+    "players": 750,
+    "capacity": 200,
+    "retrievedAt": "2026-10-29T17:19:38.803322+00:00",
+    "mapSize": 4500,
+    "country": "GB",
+    "sourceOfficial": true,
+    "address": "205.178.168.175:28015",
+    "lastSeenText": "7 minutes ago",
+    "sourceInactive": false,
+    "ownershipVerified": false,
+    "provenance": "Public third-party listing; not queried directly from game server"
+  },
+  "candidate-20": {
+    "source": "Just-Wiped public listing",
+    "sourceUrl": "https://just-wiped.net/rust_servers/2677132",
+    "sourceId": "2677132",
+    "sourceName": "Rusticated.com - US Main",
+    "players": 8,
+    "capacity": 150,
+    "retrievedAt": "2026-10-29T17:19:38.821588+00:00",
+    "mapSize": 4255,
+    "country": "US",
+    "sourceOfficial": false,
+    "address": "185.248.134.83:28015",
+    "lastSeenText": "about 1 month ago",
+    "sourceInactive": false,
+    "ownershipVerified": false,
+    "provenance": "Public third-party listing; not queried directly from game server"
+  },
+  "candidate-21": {
+    "source": "Just-Wiped public listing",
+    "sourceUrl": "https://just-wiped.net/rust_servers/2678124",
+    "sourceId": "2678124",
+    "sourceName": "Rusticated.com - EU Main",
+    "players": 750,
+    "capacity": 715,
+    "retrievedAt": "2026-10-29T17:19:39.745066+00:00",
+    "mapSize": 4555,
+    "country": "GB",
+    "sourceOfficial": true,
+    "address": "185.248.134.61:28015",
+    "lastSeenText": "10 minutes ago",
+    "sourceInactive": false,
+    "ownershipVerified": false,
+    "provenance": "Public third-party listing; not queried directly from game server"
+  },
+  "candidate-30": {
+    "source": "Just-Wiped public listing",
+    "sourceUrl": "https://just-wiped.net/rust_servers/3023645",
+    "sourceId": "3023645",
+    "sourceName": "[EU] Stevious 2x Main | Vanilla | 29/10",
+    "players": 584,
+    "capacity": 600,
+    "retrievedAt": "2026-10-29T17:19:39.668404+00:00",
+    "mapSize": 3950,
+    "country": "GB",
+    "sourceOfficial": false,
+    "address": "168.100.161.157:28015",
+    "lastSeenText": "1 minute ago",
+    "sourceInactive": false,
+    "ownershipVerified": false,
+    "provenance": "Public third-party listing; not queried directly from game server"
+  },
+  "candidate-31": {
+    "source": "Just-Wiped public listing",
+    "sourceUrl": "https://just-wiped.net/rust_servers/3228481",
+    "sourceId": "3228481",
+    "sourceName": "[EU] Stevious 2x | Solo/Duo/Trio | 29/10",
+    "players": 384,
+    "capacity": 400,
+    "retrievedAt": "2026-10-29T17:19:39.914197+00:00",
+    "mapSize": 3850,
+    "teamLimit": 3,
+    "country": "GB",
+    "sourceOfficial": false,
+    "address": "185.248.134.243:28015",
+    "lastSeenText": "8 minutes ago",
+    "sourceInactive": false,
+    "ownershipVerified": false,
+    "provenance": "Public third-party listing; not queried directly from game server"
+  },
+  "candidate-32": {
+    "source": "Just-Wiped public listing",
+    "sourceUrl": "https://just-wiped.net/rust_servers/3228621",
+    "sourceId": "3228621",
+    "sourceName": "[US] Stevious 2x | Solo/Duo/Trio | 10/22",
+    "players": 7,
+    "capacity": 150,
+    "retrievedAt": "2026-10-29T17:19:40.534060+00:00",
+    "mapSize": 3850,
+    "teamLimit": 3,
+    "country": "US",
+    "sourceOfficial": false,
+    "address": "194.46.57.102:28015",
+    "lastSeenText": "7 minutes ago",
+    "sourceInactive": false,
+    "ownershipVerified": false,
+    "provenance": "Public third-party listing; not queried directly from game server"
+  },
+  "candidate-39": {
+    "source": "Just-Wiped public listing",
+    "sourceUrl": "https://just-wiped.net/rust_servers/3156157",
+    "sourceId": "3156157",
+    "sourceName": "SURVIVORS.GG [ 2x Solo/Duo ] WIPED 27.10",
+    "players": 136,
+    "capacity": 200,
+    "retrievedAt": "2026-10-29T17:19:40.598740+00:00",
+    "mapSize": 3850,
+    "teamLimit": 2,
+    "country": "DE",
+    "sourceOfficial": false,
+    "address": "194.54.88.58:28015",
+    "lastSeenText": "2 minutes ago",
+    "sourceInactive": false,
+    "ownershipVerified": false,
+    "provenance": "Public third-party listing; not queried directly from game server"
+  },
+  "candidate-40": {
+    "source": "Just-Wiped public listing",
+    "sourceUrl": "https://just-wiped.net/rust_servers/3164524",
+    "sourceId": "3164524",
+    "sourceName": "SURVIVORS.GG #3 [ 2x Solo/Duo/Trio ] WIPED 28.10",
+    "players": 222,
+    "capacity": 250,
+    "retrievedAt": "2026-10-29T17:19:40.971905+00:00",
+    "mapSize": 3850,
+    "teamLimit": 3,
+    "country": "DE",
+    "sourceOfficial": false,
+    "address": "194.54.88.101:28015",
+    "lastSeenText": "less than a minute ago",
+    "sourceInactive": false,
+    "ownershipVerified": false,
+    "provenance": "Public third-party listing; not queried directly from game server"
+  },
+  "candidate-44": {
+    "source": "Just-Wiped public listing",
+    "sourceUrl": "https://just-wiped.net/rust_servers/3239436",
+    "sourceId": "3239436",
+    "sourceName": "WARBANDITS.GG EU 2X |Solo/Duo/Trio|X2 JUST FULLWIPED",
+    "players": 750,
+    "capacity": 200,
+    "retrievedAt": "2026-10-29T17:19:41.388267+00:00",
+    "mapSize": 4250,
+    "teamLimit": 3,
+    "country": "DE",
+    "sourceOfficial": false,
+    "address": "194.54.88.71:28015",
+    "lastSeenText": "9 minutes ago",
+    "sourceInactive": false,
+    "ownershipVerified": false,
+    "provenance": "Public third-party listing; not queried directly from game server"
+  },
+  "candidate-46": {
+    "source": "Just-Wiped public listing",
+    "sourceUrl": "https://just-wiped.net/rust_servers/3180193",
+    "sourceId": "3180193",
+    "sourceName": "EU RENEGADE 2x Monthly | SOLO ONLY | 50% Upkeep | No BP Wipe |",
+    "players": 57,
+    "capacity": 150,
+    "retrievedAt": "2026-10-29T17:19:41.720579+00:00",
+    "mapSize": 4000,
+    "teamLimit": 1,
+    "country": "GB",
+    "sourceOfficial": false,
+    "address": "168.100.161.22:27017",
+    "lastSeenText": "9 minutes ago",
+    "sourceInactive": false,
+    "ownershipVerified": false,
+    "provenance": "Public third-party listing; not queried directly from game server"
+  },
+  "candidate-47": {
+    "source": "Just-Wiped public listing",
+    "sourceUrl": "https://just-wiped.net/rust_servers/2613442",
+    "sourceId": "2613442",
+    "sourceName": "US RENEGADE 2x Monthly | Solo Duo | 50% Upkeep | No BP Wipe",
+    "players": 12,
+    "capacity": 150,
+    "retrievedAt": "2026-10-29T17:19:42.054555+00:00",
+    "mapSize": 4000,
+    "teamLimit": 2,
+    "country": "US",
+    "sourceOfficial": false,
+    "address": "64.40.8.4:28016",
+    "lastSeenText": "5 minutes ago",
+    "sourceInactive": false,
+    "ownershipVerified": false,
+    "provenance": "Public third-party listing; not queried directly from game server"
+  },
+  "candidate-48": {
+    "source": "Just-Wiped public listing",
+    "sourceUrl": "https://just-wiped.net/rust_servers/3079841",
+    "sourceId": "3079841",
+    "sourceName": "HollowServers.co 2x Solo/Duo/Trio | JUST FULL WIPED",
+    "players": 1,
+    "capacity": 100,
+    "retrievedAt": "2026-10-29T17:19:42.408274+00:00",
+    "mapSize": 3250,
+    "teamLimit": 3,
+    "country": "US",
+    "sourceOfficial": false,
+    "address": "62.233.59.77:28010",
+    "lastSeenText": "2 days ago",
+    "sourceInactive": false,
+    "ownershipVerified": false,
+    "provenance": "Public third-party listing; not queried directly from game server"
+  },
+  "candidate-49": {
+    "source": "Just-Wiped public listing",
+    "sourceUrl": "https://just-wiped.net/rust_servers/3249990",
+    "sourceId": "3249990",
+    "sourceName": "[EU/TR] CUMHURIYET | Max5 | Vanilla |Saturdays | wiped 10/24",
+    "players": 16,
+    "capacity": 200,
+    "retrievedAt": "2026-10-29T17:19:42.596761+00:00",
+    "mapSize": 4000,
+    "teamLimit": 5,
+    "country": "TR",
+    "sourceOfficial": false,
+    "address": "46.203.182.227:9012",
+    "lastSeenText": "1 day ago",
+    "sourceInactive": false,
+    "ownershipVerified": false,
+    "provenance": "Public third-party listing; not queried directly from game server"
+  }
+};
+const communityLogos = {
+  "Rustafied.com": {
+    "url": "https://images.squarespace-cdn.com/content/v1/5420d068e4b09194f76b2af6/779b1347-e8d5-4bb3-bd5a-f06dec8bc5a4/favicon.ico",
+    "sourceUrl": "https://www.rustafied.com/",
+    "kind": "official-site-icon"
+  }
+};
+
+const specs = [
  ['rustoria','Rustoria.co','EU Main','EU',600,482,7,0.4,'Vanilla','MAIN',0],
  ['rustafied','Rustafied.com','EU Odd','EU',350,288,7,1.2,'Vanilla','ODD',1],
  ['moose','Rusty Moose','US Monthly','NA',500,396,30,2.5,'Vanilla','MONTHLY',2],
@@ -58,19 +504,23 @@ function mapSizeLabel(size) {
  if(size<3000)return 'XSmall';if(size<3500)return 'Small';if(size<=4000)return 'Medium';if(size<5000)return 'Large';return 'XLarge';
 }
 const servers = specs.map(([id,name,subtitle,region,capacity,players,wipeDays,wipeHours,mode,mark,seed])=>{
+ const observation=directoryObservations[id]||null;
+ if(observation){players=observation.players;capacity=observation.capacity;}
  const rate=mode==='Vanilla'?1:Number.parseFloat(mode),modded=mode!=='Vanilla';
  const limit=subtitle.match(/quad|trio|duo|solo/i)?.[0]?.toLowerCase();
  // The original Bloo Lagoon entry explicitly advertises Trio as its largest team.
- const teamLimit=id==='bloolagoon'?3:({solo:1,duo:2,trio:3,quad:4}[limit]??null);
- const mapSize=[2500,3000,3500,4000,4500,5000,6000][seed%7];
+ let teamLimit=id==='bloolagoon'?3:({solo:1,duo:2,trio:3,quad:4}[limit]??null);
+ let mapSize=[2500,3000,3500,4000,4500,5000,6000][seed%7];
+ if(observation?.mapSize>0)mapSize=observation.mapSize;
+ if(observation?.teamLimit>0)teamLimit=observation.teamLimit;
  const history=[1,2,3].map(period=>({period,points:Array.from({length:wipeDays*24+1},(_,hour)=>{
   const progress=hour/(wipeDays*24),retention=.9*Math.exp(-progress*(1.1+seed%3*.3))+.08;
   const daily=.77+.17*Math.cos((hour-19)*Math.PI/12),launch=hour<5?.55+hour*.09:1;
   const variation=Math.sin(hour*.19+seed+period)*.025+(2-period)*.025;
   return Math.max(0,Math.min(capacity,Math.round(capacity*(retention*daily*launch+variation))));
  })}));
- return {id,name,subtitle,region,country:name==='Cumhuriyet'?'TR':null,capacity,players,wipeDays,wipeHours,mode,rate,modded,mark,seed,teamLimit,mapSize,mapSeed:731000+seed*7919,
-  address:null,verified:false,history,wipeAnchorAt:catalogSnapshotAt-wipeHours*3600000,blueprintEvery:wipeDays===30?1:wipeDays===14?2:4,initialCycle:seed%4};
+ return {id,name,subtitle,region,country:observation?.country||(name==='Cumhuriyet'?'TR':null),capacity,players,wipeDays,wipeHours,mode,rate,modded,mark,seed,teamLimit,mapSize,mapSeed:731000+seed*7919,
+  address:observation?.address||null,verified:false,observation,logo:communityLogos[name]||null,history,wipeAnchorAt:catalogSnapshotAt-wipeHours*3600000,blueprintEvery:wipeDays===30?1:wipeDays===14?2:4,initialCycle:seed%4};
 });
 function wipeState(server,now=Date.now()) {
  const duration=server.wipeDays*86400000,cycle=Math.max(0,Math.floor((now-server.wipeAnchorAt)/duration));
@@ -78,43 +528,51 @@ function wipeState(server,now=Date.now()) {
  return {currentAt,nextAt,currentKind:index%server.blueprintEvery===0?'blueprint':'map',nextKind:(index+1)%server.blueprintEvery===0?'blueprint':'map',remaining:Math.max(0,nextAt-now)};
 }
 function countdownParts(milliseconds) {const seconds=Math.max(0,Math.floor(milliseconds/1000));return {days:Math.floor(seconds/86400),hours:Math.floor(seconds%86400/3600),minutes:Math.floor(seconds%3600/60),seconds:seconds%60};}
-function filterServers(list,{query='',region='all',capacity=2000,wipe='all',rate='all',type='all',team='all',sort='players',favoritesOnly=false,favorites=[]}={}) {
- return list.filter(s=>`${s.name} ${s.subtitle} ${s.mode} ${s.address||''}`.toLowerCase().includes(query.trim().toLowerCase())&&(region==='all'||(region==='TR'?s.country==='TR':s.region===region))&&s.capacity<=Number(capacity)&&(wipe==='all'||s.wipeDays===Number(wipe))&&(rate==='all'||s.rate===Number(rate))&&(type==='all'||s.modded===(type==='modded'))&&(team==='all'||(team==='unlimited'?s.teamLimit===null:s.teamLimit===Number(team)))&&(!favoritesOnly||favorites.includes(s.id)))
+function filterServers(list,{query='',region='all',capacity=2000,wipe='all',rate='all',type='all',team='all',sort='players',sourcedOnly=false,favoritesOnly=false,favorites=[]}={}) {
+ return list.filter(s=>(!sourcedOnly||Boolean(s.observation))&&`${s.name} ${s.subtitle} ${s.mode} ${s.address||''}`.toLowerCase().includes(query.trim().toLowerCase())&&(region==='all'||(region==='TR'?s.country==='TR':s.region===region))&&s.capacity<=Number(capacity)&&(wipe==='all'||s.wipeDays===Number(wipe))&&(rate==='all'||s.rate===Number(rate))&&(type==='all'||s.modded===(type==='modded'))&&(team==='all'||(team==='unlimited'?s.teamLimit===null:s.teamLimit===Number(team)))&&(!favoritesOnly||favorites.includes(s.id)))
  .sort((a,b)=>sort==='players'?b.players-a.players:sort==='capacity'?a.capacity-b.capacity:wipeState(b).currentAt-wipeState(a).currentAt);
 }
 function averageHistory(server){return server.history[0].points.map((_,i)=>Math.round(server.history.reduce((sum,h)=>sum+h.points[i],0)/server.history.length));}
 
 const $ = id => document.getElementById(id);
 const messages={
-tr:{navigation:'Ana menü',language:'Dil',discover:'Sunucuları keşfet',favorites:'Favoriler',demoMode:'ÖRNEK VERİ MODU',eyebrow:'YENİ WIPE. YENİ BİR HİKÂYE.',headline:'İyi bir başlangıç,',headlineAccent:'doğru sunucuyla.',intro:'Saatlerce sunucu arama. Wipe’ı yakala, tüm wipe boyunca kalabalığı gör, bir sonraki evini bul.',summary:'Örnek sunucu özeti',sampleServers:'örnek sunucu',samplePlayers:'örnek çevrimiçi oyuncu',freshWipes:'son 6 saatte wipe',noLive:'Canlı bağlantı henüz yok',allDemo:'Tüm sayılar demo amaçlıdır',adventure:'BİR SONRAKİ MACERAN',caption:'Daha az arama. Daha çok Rust.',filters:'Filtreler',reset:'Sıfırla',searchLabel:'SUNUCU ARA',searchPlaceholder:'İsim veya oyun modu…',region:'BÖLGE',allRegions:'Tüm bölgeler',EU:'Avrupa · EU',NA:'Kuzey Amerika · NA',AS:'Asya · AS',OC:'Okyanusya · OC',SA:'Güney Amerika · SA',capacity:'MAKSİMUM KAPASİTE',wipeInterval:'WIPE ARALIĞI',allWipes:'Tüm wipe süreleri',weekly:'Haftalık · 7 gün',fortnightly:'İki haftalık · 14 gün',monthly:'Aylık · 30 gün',gatherRate:'KAYNAK TOPLAMA ORANI',allRates:'Tüm x oranları',serverType:'SUNUCU TÜRÜ',allTypes:'Tüm türler',vanilla:'Vanilla · modsuz',modded:'Modlu',tipTitle:'Sadece ilk günü değil.',tip:'Geçmiş wipe’ların tamamını karşılaştır. Haftalık 7, iki haftalık 14, aylık 30 gün; tüm grafikler aynı boyutta.',found:'sunucu bulundu',sort:'Sırala',sortFresh:'En yeni wipe',sortPlayers:'En çok oyuncu',sortCapacity:'En düşük kapasite',listNote:'Örnek liste · Gerçek zamanlı veri ve tam sunucu dizini henüz bağlı değil.',footerTag:'Yeni bir wipe. Eşit bir başlangıç.',disclaimer:'Rust ile resmî bağlantısı yoktur.',favoriteTitle:'Favori sunucuların',addFavorite:'favorilere ekle',removeFavorite:'favorilerden çıkar',days:'GÜN',day:'gün',players:'OYUNCULAR',minutes:'dk',hours:'sa',ago:'önce wipe',historyShort:'3 WIPE ORT. · ÖRNEK',analysis:'Wipe analizi',noFavorites:'Henüz favorin yok.',noResults:'Bu filtrelerde sunucu bulunamadı.',favoriteHelp:'Keşfet ekranındaki yıldızlara dokunarak sunucuları kaydet.',filterHelp:'Filtreleri genişlet veya sıfırla. Toplama oranı ve sunucu türü birlikte uygulanır.',intelligence:'WIPE İSTİHBARATI',close:'Kapat',detailIntro:'Wipe başlangıcından sonuna kadar oyuncu yoğunluğunu incele. Üç geçmiş wipe arasında geçiş yap veya aynı saatteki ortalamayı gör.',warning:'ÖRNEK VERİ · Grafikler üretilmiş demo verisidir. Gerçek sunucu geçmişi veya gelecek oyuncu tahmini değildir.',period:'Wipe dönemi',average:'3 wipe ortalaması',previous:'önceki wipe',axis:'Yatay eksen: wipe’tan itibaren geçen gün · Dikey eksen: oyuncu sayısı.',mean:'Üç geçmiş wipe’ın aynı saatteki oyuncu sayılarının aritmetik ortalaması. Günlük ortalama değildir; günlük iniş çıkışlar korunur.',fullWipe:'Tam wipe',sameSize:'Tüm sürelerde aynı grafik boyutu · saatlik örnekler',every:'Wipe aralığı',capacityFact:'Sunucu kapasitesi',modeFact:'Sunucu türü / oran',wipeStart:'Wipe',playerWord:'oyuncu',hourWord:'saat',per:'günde bir',chartHint:'Oyuncu sayısını görmek için grafiğin üzerinde gezin veya kaydırıcıyı kullan.',inspect:'Grafikteki saati incele',sample:'Örnek',chartLabel:'tam wipe boyunca oyuncu sayısı'},
-en:{navigation:'Main navigation',language:'Language',discover:'Explore servers',favorites:'Favorites',demoMode:'DEMO DATA MODE',eyebrow:'NEW WIPE. NEW STORY.',headline:'A fresh start,',headlineAccent:'on the right server.',intro:'Stop searching for hours. Catch the wipe, see the crowd across the entire cycle, and find your next home.',summary:'Demo server summary',sampleServers:'sample servers',samplePlayers:'sample online players',freshWipes:'wiped in the last 6 hours',noLive:'Live data is not connected',allDemo:'All numbers are demo data',adventure:'YOUR NEXT ADVENTURE',caption:'Less searching. More Rust.',filters:'Filters',reset:'Reset',searchLabel:'SEARCH SERVERS',searchPlaceholder:'Name or game mode…',region:'REGION',allRegions:'All regions',EU:'Europe · EU',NA:'North America · NA',AS:'Asia · AS',OC:'Oceania · OC',SA:'South America · SA',capacity:'MAXIMUM CAPACITY',wipeInterval:'WIPE INTERVAL',allWipes:'All wipe intervals',weekly:'Weekly · 7 days',fortnightly:'Fortnightly · 14 days',monthly:'Monthly · 30 days',gatherRate:'GATHER RATE',allRates:'All multipliers',serverType:'SERVER TYPE',allTypes:'All server types',vanilla:'Vanilla · unmodded',modded:'Modded',tipTitle:'Beyond the first day.',tip:'Compare entire historical wipes. Weekly: 7 days, fortnightly: 14, monthly: 30. Every chart stays the same size.',found:'servers found',sort:'Sort',sortFresh:'Most recent wipe',sortPlayers:'Most players',sortCapacity:'Lowest capacity',listNote:'Sample list · Live data and the full server directory are not connected yet.',footerTag:'A new wipe. An equal start.',disclaimer:'Not officially affiliated with Rust.',favoriteTitle:'Your favorite servers',addFavorite:'add to favorites',removeFavorite:'remove from favorites',days:'DAYS',day:'days',players:'PLAYERS',minutes:'min',hours:'hr',ago:'since wipe',historyShort:'3-WIPE AVG · DEMO',analysis:'Wipe analysis',noFavorites:'No favorites yet.',noResults:'No servers match these filters.',favoriteHelp:'Use the stars in Explore to save your favorite servers.',filterHelp:'Broaden or reset your filters. Gather rate and server type apply together.',intelligence:'WIPE INTELLIGENCE',close:'Close',detailIntro:'Explore player counts from the start to the end of a wipe. Compare three historical wipes or view the average at each elapsed hour.',warning:'DEMO DATA · These charts use generated samples. They are not real server history or a forecast.',period:'Wipe period',average:'3-wipe average',previous:'wipes ago',axis:'Horizontal axis: days since wipe · Vertical axis: player count.',mean:'Arithmetic mean of three historical wipes at each elapsed hour. Not a daily average; daily peaks and dips remain visible.',fullWipe:'Full wipe',sameSize:'Same chart size for every interval · hourly samples',every:'Wipe interval',capacityFact:'Server capacity',modeFact:'Server type / rate',wipeStart:'Wipe',playerWord:'players',hourWord:'hours',per:'days per wipe',chartHint:'Hover over the chart or use the slider to inspect player counts.',inspect:'Inspect elapsed hour',sample:'Demo',chartLabel:'player count across the entire wipe'}
+tr:{navigation:'Ana menü',language:'Dil',discover:'Sunucuları keşfet',favorites:'Favoriler',demoMode:'ÖRNEK VERİ MODU',eyebrow:'YENİ WIPE. YENİ BİR HİKÂYE.',headline:'İyi bir başlangıç,',headlineAccent:'doğru sunucuyla.',intro:'Saatlerce sunucu arama. Wipe’ı yakala, tüm wipe boyunca kalabalığı gör, bir sonraki evini bul.',summary:'Örnek sunucu özeti',sampleServers:'örnek sunucu',samplePlayers:'örnek çevrimiçi oyuncu',freshWipes:'son 6 saatte wipe',noLive:'Canlı bağlantı henüz yok',allDemo:'Tüm sayılar demo amaçlıdır',adventure:'BİR SONRAKİ MACERAN',caption:'Daha az arama. Daha çok Rust.',filters:'Filtreler',reset:'Sıfırla',searchLabel:'SUNUCU ARA',searchPlaceholder:'İsim veya oyun modu…',region:'BÖLGE',allRegions:'Tüm bölgeler',EU:'Avrupa · EU',NA:'Kuzey Amerika · NA',AS:'Asya · AS',OC:'Okyanusya · OC',SA:'Güney Amerika · SA',capacity:'MAKSİMUM KAPASİTE',wipeInterval:'WIPE ARALIĞI',allWipes:'Tüm wipe süreleri',weekly:'Haftalık · 7 gün',fortnightly:'İki haftalık · 14 gün',monthly:'Aylık · 30 gün',gatherRate:'KAYNAK TOPLAMA ORANI',allRates:'Tüm x oranları',serverType:'SUNUCU TÜRÜ',allTypes:'Tüm türler',vanilla:'Vanilla · modsuz',modded:'Modlu',tipTitle:'Sadece ilk günü değil.',tip:'Geçmiş wipe’ların tamamını karşılaştır. Haftalık 7, iki haftalık 14, aylık 30 gün; tüm grafikler aynı boyutta.',found:'sunucu bulundu',sort:'Sırala',sortFresh:'En yeni wipe',sortPlayers:'En çok oyuncu',sortCapacity:'En düşük kapasite',listNote:'Örnek liste · Gerçek zamanlı veri ve tam sunucu dizini henüz bağlı değil.',footerTag:'Yeni bir wipe. Eşit bir başlangıç.',disclaimer:'Rust ile resmî bağlantısı yoktur.',favoriteTitle:'Favori sunucuların',addFavorite:'favorilere ekle',removeFavorite:'favorilerden çıkar',days:'GÜN',day:'gün',players:'OYUNCULAR',minutes:'dk',hours:'sa',ago:'önce wipe',historyShort:'3 WIPE ORT. · ÖRNEK',analysis:'Wipe analizi',noFavorites:'Henüz favorin yok.',noResults:'Bu filtrelerde sunucu bulunamadı.',favoriteHelp:'Keşfet ekranındaki yıldızlara dokunarak sunucuları kaydet.',filterHelp:'Filtreleri genişlet veya kaynak kaydı olmayan sunucular için örnek kayıtları göster seçeneğini aç.',intelligence:'WIPE İSTİHBARATI',close:'Kapat',detailIntro:'Wipe başlangıcından sonuna kadar oyuncu yoğunluğunu incele. Üç geçmiş wipe arasında geçiş yap veya aynı saatteki ortalamayı gör.',warning:'ÖRNEK VERİ · Grafikler üretilmiş demo verisidir. Gerçek sunucu geçmişi veya gelecek oyuncu tahmini değildir.',period:'Wipe dönemi',average:'3 wipe ortalaması',previous:'önceki wipe',axis:'Yatay eksen: wipe’tan itibaren geçen gün · Dikey eksen: oyuncu sayısı.',mean:'Üç geçmiş wipe’ın aynı saatteki oyuncu sayılarının aritmetik ortalaması. Günlük ortalama değildir; günlük iniş çıkışlar korunur.',fullWipe:'Tam wipe',sameSize:'Tüm sürelerde aynı grafik boyutu · saatlik örnekler',every:'Wipe aralığı',capacityFact:'Sunucu kapasitesi',modeFact:'Sunucu türü / oran',wipeStart:'Wipe',playerWord:'oyuncu',hourWord:'saat',per:'günde bir',chartHint:'Oyuncu sayısını görmek için grafiğin üzerinde gezin veya kaydırıcıyı kullan.',inspect:'Grafikteki saati incele',sample:'Örnek',chartLabel:'tam wipe boyunca oyuncu sayısı'},
+en:{navigation:'Main navigation',language:'Language',discover:'Explore servers',favorites:'Favorites',demoMode:'DEMO DATA MODE',eyebrow:'NEW WIPE. NEW STORY.',headline:'A fresh start,',headlineAccent:'on the right server.',intro:'Stop searching for hours. Catch the wipe, see the crowd across the entire cycle, and find your next home.',summary:'Demo server summary',sampleServers:'sample servers',samplePlayers:'sample online players',freshWipes:'wiped in the last 6 hours',noLive:'Live data is not connected',allDemo:'All numbers are demo data',adventure:'YOUR NEXT ADVENTURE',caption:'Less searching. More Rust.',filters:'Filters',reset:'Reset',searchLabel:'SEARCH SERVERS',searchPlaceholder:'Name or game mode…',region:'REGION',allRegions:'All regions',EU:'Europe · EU',NA:'North America · NA',AS:'Asia · AS',OC:'Oceania · OC',SA:'South America · SA',capacity:'MAXIMUM CAPACITY',wipeInterval:'WIPE INTERVAL',allWipes:'All wipe intervals',weekly:'Weekly · 7 days',fortnightly:'Fortnightly · 14 days',monthly:'Monthly · 30 days',gatherRate:'GATHER RATE',allRates:'All multipliers',serverType:'SERVER TYPE',allTypes:'All server types',vanilla:'Vanilla · unmodded',modded:'Modded',tipTitle:'Beyond the first day.',tip:'Compare entire historical wipes. Weekly: 7 days, fortnightly: 14, monthly: 30. Every chart stays the same size.',found:'servers found',sort:'Sort',sortFresh:'Most recent wipe',sortPlayers:'Most players',sortCapacity:'Lowest capacity',listNote:'Sample list · Live data and the full server directory are not connected yet.',footerTag:'A new wipe. An equal start.',disclaimer:'Not officially affiliated with Rust.',favoriteTitle:'Your favorite servers',addFavorite:'add to favorites',removeFavorite:'remove from favorites',days:'DAYS',day:'days',players:'PLAYERS',minutes:'min',hours:'hr',ago:'since wipe',historyShort:'3-WIPE AVG · DEMO',analysis:'Wipe analysis',noFavorites:'No favorites yet.',noResults:'No servers match these filters.',favoriteHelp:'Use the stars in Explore to save your favorite servers.',filterHelp:'Broaden your filters, or enable unverified demo listings if a saved server has no source snapshot.',intelligence:'WIPE INTELLIGENCE',close:'Close',detailIntro:'Explore player counts from the start to the end of a wipe. Compare three historical wipes or view the average at each elapsed hour.',warning:'DEMO DATA · These charts use generated samples. They are not real server history or a forecast.',period:'Wipe period',average:'3-wipe average',previous:'wipes ago',axis:'Horizontal axis: days since wipe · Vertical axis: player count.',mean:'Arithmetic mean of three historical wipes at each elapsed hour. Not a daily average; daily peaks and dips remain visible.',fullWipe:'Full wipe',sameSize:'Same chart size for every interval · hourly samples',every:'Wipe interval',capacityFact:'Server capacity',modeFact:'Server type / rate',wipeStart:'Wipe',playerWord:'players',hourWord:'hours',per:'days per wipe',chartHint:'Hover over the chart or use the slider to inspect player counts.',inspect:'Inspect elapsed hour',sample:'Demo',chartLabel:'player count across the entire wipe'}
 };
 Object.assign(messages.tr,{TR:'Türkiye · TR',teamLimit:'TAKIM SINIRI',allTeams:'Tüm takım boyutları',unknownTeam:'Belirtilmemiş',mapSize:'HARİTA',currentWipe:'Mevcut wipe',nextWipe:'Sonraki wipe',mapWipe:'Sadece harita',blueprintWipe:'Harita + BP',countdown:'Sonraki wipe’a',ip:'Sunucu IP',unknownIp:'IP doğrulanmadı',copyIp:'IP’yi kopyala',copied:'Kopyalandı',copyFailed:'Kopyalanamadı; adresi seçip kopyala',details:'Sunucu detayları',demoListing:'ÖRNEK KAYIT',demoSchedule:'Örnek wipe takvimi',numericMap:'Harita boyutu',seedLabel:'Harita seed’i',seedHelp:'Seed, haritanın oluşumunu belirleyen sayıdır. IP adresi değildir. Aynı seed ve boyut, uyumlu oyun sürümünde aynı haritayı üretir.',mapUnit:'metre',sortPlayers:'En çok oyuncu · demo',listNote:'62 örnek kayıt · Yeni 50 kayıt ve Cumhuriyet dahil sunucu bilgileri doğrulanmamıştır. Popülerlik, takvim ve sayılar örnektir; IP uydurulmaz.',warning:'ÖRNEK VERİ · Oyuncu sayıları, harita bilgileri, takım sınırları ve wipe takvimi üretilmiş örneklerdir. Gerçek geçmiş veya gelecek tahmini değildir.',secondsShort:'sn',minutesShort:'dk',hoursShort:'sa',daysShort:'g',noLive:'Gerçek liste doğrulanmadı'});
 Object.assign(messages.en,{TR:'Türkiye · TR',teamLimit:'TEAM LIMIT',allTeams:'All team sizes',unknownTeam:'Not specified',mapSize:'MAP',currentWipe:'Current wipe',nextWipe:'Next wipe',mapWipe:'Map only',blueprintWipe:'Map + blueprints',countdown:'Next wipe in',ip:'Server IP',unknownIp:'IP not verified',copyIp:'Copy IP',copied:'Copied',copyFailed:'Could not copy; select the address',details:'Server details',demoListing:'DEMO LISTING',demoSchedule:'Sample wipe schedule',numericMap:'Map size',seedLabel:'Map seed',seedHelp:'The seed is the number used to generate the map, not an IP address. The same seed and size reproduce the map in a compatible game version.',mapUnit:'meters',sortPlayers:'Most players · demo',listNote:'62 demo listings · The 50 new candidates, including Cumhuriyet, are not verified. Popularity, schedules and numbers are samples; no IP addresses are invented.',warning:'DEMO DATA · Player counts, maps, team limits and wipe schedules are generated samples. They are not real history or a forecast.',secondsShort:'s',minutesShort:'m',hoursShort:'h',daysShort:'d',noLive:'Real server list not verified'});
+Object.assign(messages.tr,{includeDemo:'Doğrulanmamış örnek kayıtları da göster',sourceSnapshot:'Kaynak kaydı',retrieved:'Alındı',sourceLastSeen:'Kaynakta son görülme',notLive:'Canlı veri değildir',sourceLink:'Kaynak sayfası',sourceCounts:'OYUNCULAR · KAYNAK KAYDI',demoCounts:'OYUNCULAR · ÖRNEK',mixedData:'KAYIT + ÖRNEK GEÇMİŞ',placeholderLogo:'Logo henüz doğrulanmadı',sourceName:'Kaynakta sunucu adı',countMismatch:'Kaynak oyuncu sayısını kapasiteden yüksek bildiriyor.',warning:'Wipe grafikleri, seed ve mevcut/gelecek wipe takvimi örnektir. Kaynak sayfasından alınan IP, oyuncu sayısı ve harita bilgileri ayrıca işaretlenir; bunlar canlı sorgu değildir.',demoMode:'KAYIT + ÖRNEK GEÇMİŞ',sampleServers:'katalog kaydı',samplePlayers:'kaynak kayıtlarındaki oyuncu',noLive:'Anlık sorgu bağlı değil',allDemo:'Kaynak kayıtları + örnek wipe geçmişi',sortPlayers:'Oyuncu · kayıt/örnek',listNote:'Kaynak kaydı olan sunucular varsayılan olarak gösterilir. Her kaydın kaynağı ve alım zamanı belirtilir. Wipe grafikleri ve gelecekteki takvimler hâlâ örnektir.'});
+Object.assign(messages.en,{includeDemo:'Include unverified demo listings',sourceSnapshot:'Source snapshot',retrieved:'Retrieved',sourceLastSeen:'Source last seen',notLive:'Not live data',sourceLink:'Source page',sourceCounts:'PLAYERS · SNAPSHOT',demoCounts:'PLAYERS · DEMO',mixedData:'SNAPSHOT + DEMO HISTORY',placeholderLogo:'Official logo not yet verified',sourceName:'Name on source',countMismatch:'The source reports more players than available slots.',warning:'Wipe charts, seeds and current/future wipe schedules are demo data. Sourced IP, player count and map observations are labeled separately; they are not live queries.',demoMode:'SNAPSHOT + DEMO HISTORY',sampleServers:'directory entries',samplePlayers:'players in sourced snapshots',noLive:'Live queries are not connected',allDemo:'Source snapshots + demo wipe history',sortPlayers:'Players · snapshot/demo',listNote:'Sourced listings are shown by default. Each has a source link and retrieval time. Wipe charts and future schedules are still demo data.'});
+Object.assign(messages.tr,{currentWipe:'Mevcut wipe · örnek',nextWipe:'Sonraki wipe · örnek',freshWipes:'kaynak bağlantılı sunucu',allDemo:'Kaynak kayıtları + örnek grafik/takvim'});
+Object.assign(messages.en,{currentWipe:'Current wipe · demo',nextWipe:'Next wipe · demo',freshWipes:'source-linked servers',allDemo:'Source snapshots + demo charts/schedules'});
 let language='en';let favorites=[];let favoritesOnly=false;let activeServer=null;let activePeriod='avg';
 try {language=localStorage.getItem('wipe-radar-language')==='tr'?'tr':'en';const saved=JSON.parse(localStorage.getItem('wipe-radar-favorites')||'[]');favorites=Array.isArray(saved)?saved.filter(id=>servers.some(s=>s.id===id)):[];}catch{}
 const t=key=>messages[language][key]||key;
 const number=n=>new Intl.NumberFormat(language==='tr'?'tr-TR':'en-US').format(n);
 function persist(key,value){try{localStorage.setItem(key,value);}catch{}}
-function applyLanguage(){document.documentElement.lang=language;document.title=`Wipe Radar — ${t('discover')}`;$('language').value=language;document.querySelectorAll('[data-i18n]').forEach(e=>e.textContent=t(e.dataset.i18n));document.querySelectorAll('[data-i18n-aria]').forEach(e=>e.setAttribute('aria-label',t(e.dataset.i18nAria)));document.querySelectorAll('[data-i18n-placeholder]').forEach(e=>e.placeholder=t(e.dataset.i18nPlaceholder));$('total-servers').textContent=servers.length;$('total-players').textContent=number(servers.reduce((a,s)=>a+s.players,0));$('fresh-count').textContent=servers.filter(s=>s.wipeHours<=6).length;render();if(activeServer)renderDetails();}
+function applyLanguage(){document.documentElement.lang=language;document.title=`Wipe Radar — ${t('discover')}`;$('language').value=language;document.querySelectorAll('[data-i18n]').forEach(e=>e.textContent=t(e.dataset.i18n));document.querySelectorAll('[data-i18n-aria]').forEach(e=>e.setAttribute('aria-label',t(e.dataset.i18nAria)));document.querySelectorAll('[data-i18n-placeholder]').forEach(e=>e.placeholder=t(e.dataset.i18nPlaceholder));$('total-servers').textContent=servers.length;$('total-players').textContent=number(servers.filter(s=>s.observation).reduce((a,s)=>a+s.players,0));$('fresh-count').textContent=servers.filter(s=>s.observation).length;render();if(activeServer)renderDetails();}
 function path(points,width,height,max,ox=0,oy=0){return points.map((p,i)=>`${i?'L':'M'}${(ox+i*width/(points.length-1)).toFixed(1)},${(oy+height-p/max*height).toFixed(1)}`).join(' ');}
 function mini(s){const d=path(averageHistory(s),300,43,s.capacity,0,3);return `<div class="mini-wrap"><svg class="mini-chart" viewBox="0 0 300 49" preserveAspectRatio="none" role="img" aria-label="${s.wipeDays} ${t('day')} · ${t('chartLabel')}"><path d="${d} L300,49 L0,49 Z" fill="#ef82421a"/><path d="${d}" fill="none" stroke="#e4a16d" stroke-width="1.2" vector-effect="non-scaling-stroke"/></svg><div class="mini-axis"><span>${t('wipeStart')}</span><span>${s.wipeDays} ${t('day')}</span></div></div>`;}
-function render(){const matches=filterServers(servers,{query:$('search').value,region:$('region').value,capacity:$('capacity').value,wipe:$('wipe').value,rate:$('rate').value,type:$('type').value,team:$('team').value,sort:$('sort').value,favoritesOnly,favorites});$('result-count').textContent=matches.length;$('favorite-count').textContent=favorites.length;$('capacity-label').textContent=$('capacity').value;$('section-title').innerHTML=(favoritesOnly?t('favoriteTitle'):t('discover'))+'<span>.</span>';$('discover').classList.toggle('active',!favoritesOnly);$('favorites-tab').classList.toggle('active',favoritesOnly);
-$('server-grid').innerHTML=matches.length?matches.map(s=>`<article class="server-card" data-server="${s.id}"><button class="card-open" data-detail="${s.id}" aria-label="${s.name}: ${t('details')}"></button><button class="favorite ${favorites.includes(s.id)?'selected':''}" data-favorite="${s.id}" aria-label="${s.name}: ${t(favorites.includes(s.id)?'removeFavorite':'addFavorite')}" aria-pressed="${favorites.includes(s.id)}">${favorites.includes(s.id)?'★':'☆'}</button><div class="card-head"><div class="server-logo logo-${s.seed%4}" aria-hidden="true">${s.name[0]}</div><div><h3 class="card-name">${s.name}</h3><div class="card-sub">${s.subtitle}</div></div></div><div class="badges"><span class="badge region">${s.region}</span><span class="badge">${s.rate}x</span><span class="badge">${s.modded?t('modded'):'Vanilla'}</span><span class="badge">${s.wipeDays} ${t('days')}</span><span class="badge">${teamName(s)}</span><span class="badge">${mapSizeLabel(s.mapSize)}</span></div><div class="server-address"><span>${t('ip')}</span>${s.address?`<button class="copy-address" data-copy="${s.id}" aria-label="${t('copyIp')}">${s.address}</button>`:`<span class="unverified-ip">${t('unknownIp')}</span>`}</div><div class="wipe-info"><div><span>${t('currentWipe')}</span><strong data-current-kind="${s.id}">${wipeKind(wipeState(s).currentKind)}</strong></div><div><span>${t('nextWipe')}</span><strong data-next-kind="${s.id}">${wipeKind(wipeState(s).nextKind)}</strong></div></div><div class="countdown-row"><span>${t('countdown')}</span><time data-countdown="${s.id}"></time></div><div class="schedule-note">${t('demoSchedule')}</div><div class="players-row"><span>${t('players')}</span><strong>${s.players} <small>/ ${s.capacity}</small></strong></div><div class="capacity-bar"><div style="width:${s.players/s.capacity*100}%"></div></div>${mini(s)}<div class="card-bottom"><span>${t('demoListing')}</span><button class="detail-button" data-detail="${s.id}" aria-label="${s.name}: ${t('analysis')}">${t('details')} <span>↗</span></button></div></article>`).join(''):`<div class="empty"><h3>${t(favoritesOnly&&!favorites.length?'noFavorites':'noResults')}</h3><p>${t(favoritesOnly&&!favorites.length?'favoriteHelp':'filterHelp')}</p><button class="detail-button" id="empty-reset">${t(favoritesOnly?'discover':'reset')}</button></div>`;
+function render(){const matches=filterServers(servers,{query:$('search').value,region:$('region').value,capacity:$('capacity').value,wipe:$('wipe').value,rate:$('rate').value,type:$('type').value,sourcedOnly:!$('include-demo').checked,team:$('team').value,sort:$('sort').value,favoritesOnly,favorites});$('result-count').textContent=matches.length;$('favorite-count').textContent=favorites.length;$('capacity-label').textContent=$('capacity').value;$('section-title').innerHTML=(favoritesOnly?t('favoriteTitle'):t('discover'))+'<span>.</span>';$('discover').classList.toggle('active',!favoritesOnly);$('favorites-tab').classList.toggle('active',favoritesOnly);
+$('server-grid').innerHTML=matches.length?matches.map(s=>`<article class="server-card" data-server="${s.id}"><button class="card-open" data-detail="${s.id}" aria-label="${s.name}: ${t('details')}"></button><button class="favorite ${favorites.includes(s.id)?'selected':''}" data-favorite="${s.id}" aria-label="${s.name}: ${t(favorites.includes(s.id)?'removeFavorite':'addFavorite')}" aria-pressed="${favorites.includes(s.id)}">${favorites.includes(s.id)?'★':'☆'}</button><div class="card-head">${logoMarkup(s)}<div><h3 class="card-name">${s.name}</h3><div class="card-sub">${s.subtitle}</div></div></div><div class="badges"><span class="badge region">${s.region}</span><span class="badge">${s.rate}x</span><span class="badge">${s.modded?t('modded'):'Vanilla'}</span><span class="badge">${s.wipeDays} ${t('days')}</span><span class="badge">${teamName(s)}</span><span class="badge">${mapSizeLabel(s.mapSize)}</span></div><div class="server-address"><span>${t('ip')}</span>${s.address?`<button class="copy-address" data-copy="${s.id}" aria-label="${t('copyIp')}">${s.address}</button>`:`<span class="unverified-ip">${t('unknownIp')}</span>`}</div><div class="wipe-info"><div><span>${t('currentWipe')}</span><strong data-current-kind="${s.id}">${wipeKind(wipeState(s).currentKind)}</strong></div><div><span>${t('nextWipe')}</span><strong data-next-kind="${s.id}">${wipeKind(wipeState(s).nextKind)}</strong></div></div><div class="countdown-row"><span>${t('countdown')}</span><time data-countdown="${s.id}"></time></div><div class="schedule-note">${t('demoSchedule')}</div>${snapshotMarkup(s)}<div class="players-row" title="${s.players>s.capacity?t('countMismatch'):''}"><span>${t(s.observation?'sourceCounts':'demoCounts')}</span><strong>${s.players} <small>/ ${s.capacity}</small></strong></div><div class="capacity-bar"><div style="width:${Math.min(100,s.players/s.capacity*100)}%"></div></div>${mini(s)}<div class="card-bottom"><span>${t(s.observation?'mixedData':'demoListing')}</span><button class="detail-button" data-detail="${s.id}" aria-label="${s.name}: ${t('analysis')}">${t('details')} <span>↗</span></button></div></article>`).join(''):`<div class="empty"><h3>${t(favoritesOnly&&!favorites.length?'noFavorites':'noResults')}</h3><p>${t(favoritesOnly&&!favorites.length?'favoriteHelp':'filterHelp')}</p><button class="detail-button" id="empty-reset">${t(favoritesOnly?'discover':'reset')}</button></div>`;
 updateCountdowns();$('empty-reset')?.addEventListener('click',()=>{favoritesOnly=false;reset();});}
-function reset(){for(const id of ['region','wipe','rate','type','team'])$(id).value='all';$('search').value='';$('capacity').value='2000';$('sort').value='players';render();}
-for(const id of ['search','region','capacity','wipe','rate','type','team','sort'])$(id).addEventListener('input',render);
+function reset(){for(const id of ['region','wipe','rate','type','team'])$(id).value='all';$('include-demo').checked=false;$('search').value='';$('capacity').value='2000';$('sort').value='players';render();}
+for(const id of ['search','region','capacity','wipe','rate','type','team','sort','include-demo'])$(id).addEventListener('input',render);
 $('reset').addEventListener('click',reset);$('language').addEventListener('change',()=>{language=$('language').value;persist('wipe-radar-language',language);applyLanguage();});
 $('discover').addEventListener('click',()=>{favoritesOnly=false;render();});$('favorites-tab').addEventListener('click',()=>{favoritesOnly=true;render();$('explore').scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth'});});
 $('server-grid').addEventListener('click',e=>{const copy=e.target.closest('[data-copy]');if(copy){copyAddress(copy.dataset.copy,copy);return;}const favorite=e.target.closest('[data-favorite]');if(favorite){const id=favorite.dataset.favorite;favorites=favorites.includes(id)?favorites.filter(x=>x!==id):[...favorites,id];persist('wipe-radar-favorites',JSON.stringify(favorites));render();return;}const detail=e.target.closest('[data-detail]');if(detail){activeServer=servers.find(s=>s.id===detail.dataset.detail);activePeriod='avg';renderDetails();$('server-dialog').showModal();}});
-function teamName(s){return ({1:'Solo',2:'Duo',3:'Trio',4:'Quad'})[s.teamLimit]||t('unknownTeam');}
+function teamName(s){if(s.teamLimit>4)return 'Max '+s.teamLimit;return ({1:'Solo',2:'Duo',3:'Trio',4:'Quad'})[s.teamLimit]||t('unknownTeam');}
 function wipeKind(kind){return t(kind==='blueprint'?'blueprintWipe':'mapWipe');}
 function formatCountdown(ms){const p=countdownParts(ms);return `${p.days}${t('daysShort')} ${String(p.hours).padStart(2,'0')}${t('hoursShort')} ${String(p.minutes).padStart(2,'0')}${t('minutesShort')} ${String(p.seconds).padStart(2,'0')}${t('secondsShort')}`;}
 function formatDate(ms){return new Intl.DateTimeFormat(language==='tr'?'tr-TR':'en-US',{dateStyle:'medium',timeStyle:'short'}).format(ms)+' · '+Intl.DateTimeFormat().resolvedOptions().timeZone;}
-function updateCountdowns(){const now=Date.now();$('fresh-count').textContent=servers.filter(s=>now-wipeState(s,now).currentAt<=6*3600000).length;document.querySelectorAll('[data-countdown]').forEach(e=>{const s=servers.find(s=>s.id===e.dataset.countdown);const state=wipeState(s,now);e.textContent=formatCountdown(state.remaining);e.dateTime=new Date(state.nextAt).toISOString();e.title=formatDate(state.nextAt);});for(const [attribute,key] of [['data-current-kind','currentKind'],['data-next-kind','nextKind']])document.querySelectorAll(`[${attribute}]`).forEach(e=>{const s=servers.find(s=>s.id===e.getAttribute(attribute));e.textContent=wipeKind(wipeState(s,now)[key]);});if(activeServer){const state=wipeState(activeServer,now);for(const [id,date] of [['current-wipe-date',state.currentAt],['next-wipe-date',state.nextAt]])if($(id))$(id).textContent=formatDate(date);}}
+function updateCountdowns(){const now=Date.now();$('fresh-count').textContent=servers.filter(s=>s.observation).length;document.querySelectorAll('[data-countdown]').forEach(e=>{const s=servers.find(s=>s.id===e.dataset.countdown);const state=wipeState(s,now);e.textContent=formatCountdown(state.remaining);e.dateTime=new Date(state.nextAt).toISOString();e.title=formatDate(state.nextAt);});for(const [attribute,key] of [['data-current-kind','currentKind'],['data-next-kind','nextKind']])document.querySelectorAll(`[${attribute}]`).forEach(e=>{const s=servers.find(s=>s.id===e.getAttribute(attribute));e.textContent=wipeKind(wipeState(s,now)[key]);});if(activeServer){const state=wipeState(activeServer,now);for(const [id,date] of [['current-wipe-date',state.currentAt],['next-wipe-date',state.nextAt]])if($(id))$(id).textContent=formatDate(date);}}
 async function copyAddress(id,button){const s=servers.find(s=>s.id===id);if(!s?.address)return;try{await navigator.clipboard.writeText(s.address);button.textContent=t('copied');setTimeout(()=>{if(button.isConnected)button.textContent=s.address;},1600);}catch{button.textContent=s.address;button.title=t('copyFailed');}}
+function escapeHtml(value){return String(value).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+function logoMarkup(s){return `<div class="server-logo logo-${s.seed%4}" title="${escapeHtml(s.logo?s.logo.sourceUrl:t('placeholderLogo'))}"><span aria-hidden="true">${s.name[0]}</span>${s.logo?`<img src="${escapeHtml(s.logo.url)}" alt="${escapeHtml(s.name)}" loading="lazy" referrerpolicy="no-referrer">`:''}</div>`;}
+function snapshotMarkup(s){if(!s.observation)return '';return `<div class="source-snapshot"><a data-source href="${escapeHtml(s.observation.sourceUrl)}" target="_blank" rel="noopener noreferrer">${t('sourceSnapshot')} ↗</a><span>${t('retrieved')}: ${escapeHtml(formatDate(Date.parse(s.observation.retrievedAt)))}</span><span>${t('sourceLastSeen')}: ${escapeHtml(s.observation.lastSeenText||'—')} · ${t('notLive')}</span></div>`;}
+document.addEventListener('error',e=>{if(e.target instanceof HTMLImageElement&&e.target.closest('.server-logo'))e.target.remove();},true);
 function periodLabel(index){return language==='tr'?`${index+1}. ${t('previous')}`:`${index+1} ${index===0?'wipe ago':t('previous')}`;}
-function renderDetails(){const s=activeServer;$('dialog-content').innerHTML=`<div class="dialog-top"><div><div class="eyebrow">${t('intelligence')} · ${s.region}</div><h2>${s.name} <span>/ ${s.subtitle}</span></h2></div><button class="close-dialog" aria-label="${t('close')}">×</button></div><p class="dialog-desc">${t('detailIntro')}</p><div class="demo-warning">${t('warning')}</div><div class="detail-metadata"><div><span>${t('teamLimit')}</span><strong>${teamName(s)}</strong></div><div><span>${t('numericMap')}</span><strong>${s.mapSize} × ${s.mapSize} ${t('mapUnit')}</strong><small>${mapSizeLabel(s.mapSize)}</small></div><div><span>${t('seedLabel')}</span><strong>${s.mapSeed}</strong></div><div><span>${t('ip')}</span><strong>${s.address||t('unknownIp')}</strong></div></div><p class="seed-help">${t('seedHelp')}</p><div class="detail-wipes"><div><span>${t('currentWipe')}</span><strong data-current-kind="${s.id}">${wipeKind(wipeState(s).currentKind)}</strong><small id="current-wipe-date"></small></div><div><span>${t('nextWipe')}</span><strong data-next-kind="${s.id}">${wipeKind(wipeState(s).nextKind)}</strong><small id="next-wipe-date"></small></div><div><span>${t('countdown')}</span><time data-countdown="${s.id}"></time><small>${t('demoSchedule')}</small></div></div><div class="chart-controls" aria-label="${t('period')}"><button data-period="avg">${t('average')}</button>${s.history.map((_,i)=>`<button data-period="${i}">${periodLabel(i)}</button>`).join('')}</div><div class="chart-heading"><strong>${t('fullWipe')} · ${s.wipeDays} ${t('day')}</strong><span>${t('sameSize')}</span></div><div id="chart"></div><label class="chart-inspector" for="chart-hour"><span>${t('inspect')}</span><output id="chart-value"></output></label><input id="chart-hour" type="range" min="0" max="${s.wipeDays*24}" value="0" step="1"><p class="graph-caption">${t('axis')}<br>${t('mean')}<br>${t('chartHint')}</p><div class="dialog-facts"><div><span>${t('every')}</span><strong>${s.wipeDays} ${t('per')}</strong></div><div><span>${t('capacityFact')}</span><strong>${s.capacity} ${t('playerWord')}</strong></div><div><span>${t('modeFact')}</span><strong>${s.modded?t('modded'):'Vanilla'} · ${s.rate}x</strong></div></div>`;
+function renderDetails(){const s=activeServer;$('dialog-content').innerHTML=`<div class="dialog-top"><div><div class="eyebrow">${t('intelligence')} · ${s.region}</div><h2>${s.name} <span>/ ${s.subtitle}</span></h2></div><button class="close-dialog" aria-label="${t('close')}">×</button></div><p class="dialog-desc">${t('detailIntro')}</p><div class="demo-warning">${t('warning')}</div>${snapshotMarkup(s)}${s.observation?`<p class="source-server-name">${t('sourceName')}: ${escapeHtml(s.observation.sourceName)}</p>`:''}<div class="detail-metadata"><div><span>${t('teamLimit')}</span><strong>${teamName(s)}</strong></div><div><span>${t('numericMap')}</span><strong>${s.mapSize} × ${s.mapSize} ${t('mapUnit')}</strong><small>${mapSizeLabel(s.mapSize)}</small></div><div><span>${t('seedLabel')}</span><strong>${s.mapSeed}</strong></div><div><span>${t('ip')}</span><strong>${s.address||t('unknownIp')}</strong></div></div><p class="seed-help">${t('seedHelp')}</p><div class="detail-wipes"><div><span>${t('currentWipe')}</span><strong data-current-kind="${s.id}">${wipeKind(wipeState(s).currentKind)}</strong><small id="current-wipe-date"></small></div><div><span>${t('nextWipe')}</span><strong data-next-kind="${s.id}">${wipeKind(wipeState(s).nextKind)}</strong><small id="next-wipe-date"></small></div><div><span>${t('countdown')}</span><time data-countdown="${s.id}"></time><small>${t('demoSchedule')}</small></div></div><div class="chart-controls" aria-label="${t('period')}"><button data-period="avg">${t('average')}</button>${s.history.map((_,i)=>`<button data-period="${i}">${periodLabel(i)}</button>`).join('')}</div><div class="chart-heading"><strong>${t('fullWipe')} · ${s.wipeDays} ${t('day')}</strong><span>${t('sameSize')}</span></div><div id="chart"></div><label class="chart-inspector" for="chart-hour"><span>${t('inspect')}</span><output id="chart-value"></output></label><input id="chart-hour" type="range" min="0" max="${s.wipeDays*24}" value="0" step="1"><p class="graph-caption">${t('axis')}<br>${t('mean')}<br>${t('chartHint')}</p><div class="dialog-facts"><div><span>${t('every')}</span><strong>${s.wipeDays} ${t('per')}</strong></div><div><span>${t('capacityFact')}</span><strong>${s.capacity} ${t('playerWord')}</strong></div><div><span>${t('modeFact')}</span><strong>${s.modded?t('modded'):'Vanilla'} · ${s.rate}x</strong></div></div>`;
 $('dialog-content').querySelector('.close-dialog').addEventListener('click',()=>$('server-dialog').close());$('dialog-content').querySelectorAll('[data-period]').forEach(b=>b.addEventListener('click',()=>{activePeriod=b.dataset.period;drawChart();}));$('chart-hour').addEventListener('input',()=>inspectHour(Number($('chart-hour').value)));drawChart();updateCountdowns();}
 function selectedPoints(){return activePeriod==='avg'?averageHistory(activeServer):activeServer.history[Number(activePeriod)].points;}
 function drawChart(){const s=activeServer,points=selectedPoints(),d=path(points,590,210,s.capacity,55,20),label=activePeriod==='avg'?t('average'):periodLabel(Number(activePeriod));const ticks=[0,...Array.from({length:5},(_,i)=>Math.round((i+1)*s.wipeDays/5))];

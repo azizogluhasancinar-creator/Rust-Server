@@ -1,1 +1,2 @@
 python-a2s==1.4.2
+beautifulsoup4==4.14.3
