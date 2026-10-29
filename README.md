@@ -22,7 +22,7 @@ npm run export:local
 # Çıktı: dist/Wipe-Radar.html
 ```
 
-Bölge, maksimum sunucu kapasitesi, wipe aralığı ve isim/mod araması birlikte çalışır. Yeni wipe, oyuncu sayısı veya kapasiteye göre sıralama; tarayıcıda saklanan favoriler ve üç geçmiş wipe'ın ilk 24 saatini karşılaştıran grafikler içerir. Mobil ekranları ve klavyeyle kullanımı destekler.
+Bölge, maksimum sunucu kapasitesi, wipe aralığı, toplama oranı (1x–10x), vanilla/modlu türü ve isim/mod araması birlikte çalışır. Türkçe/İngilizce dil tercihi tarayıcıda saklanır. Yeni wipe, oyuncu sayısı veya kapasiteye göre sıralama; tarayıcıda saklanan favoriler ve üç geçmiş wipe'ın tamamını karşılaştıran saatlik oyuncu grafikleri içerir. Mobil ekranları ve klavyeyle kullanımı destekler.
 
 **Tüm sunucu sayıları, wipe zamanları ve geçmiş grafikler demo verisidir.** Gerçek zamanlı sorgu, eksiksiz sunucu dizini, bağlantı adresleri veya gerçek geçmiş veri entegrasyonu yoktur. `data.js` örnek veri ve filtreleme mantığını içerir. Grafik ortalaması, üç örnek geçmişin aynı saatlerindeki aritmetik ortalamasıdır; gelecek tahmini değildir.
 
@@ -37,3 +37,9 @@ GitHub → Settings → Pages → Build and deployment → Source: **Deploy from
 Site adresi: https://azizogluhasancinar-creator.github.io/Rust-Server/
 
 Bu adres ancak GitHub Pages etkinleştirilip dağıtım tamamlandıktan sonra çalışır. Sayfa gerçek sunucu verisi yerine açıkça işaretlenmiş demo verilerini gösterir.
+
+## Tam wipe grafikleri ve arka plan
+
+Geçmiş veri örnekleri 7/14/30 günlük wipe süresinin tamamını saatlik aralıklarla kapsar (başlangıç ve bitiş dahil 169/337/721 nokta). Aynı boyuttaki grafikler süreye göre yatayda ölçeklenir. Üç wipe ortalaması, aynı geçen saatteki değerlerin ortalamasıdır. Fare imleci veya klavyeyle erişilebilir saat kaydırıcısı oyuncu sayısını gösterir.
+
+`assets/rust-landscape.png`, kullanıcının gönderdiği manzara referans alınarak yapay zekâyla yeniden üretilmiş 1672×940 arka plandır; orijinal oyundan alınmış yüksek çözünürlüklü resmî bir görsel olduğu iddia edilmez. Siyah katman CSS ile uygulanır. Pages derlemesi görseli yerel varlık olarak kopyalar; tek HTML dışa aktarımı görseli dosyaya gömer. Harici font veya resim servisi gerekmez.

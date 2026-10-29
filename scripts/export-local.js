@@ -3,7 +3,8 @@ const root = new URL('../', import.meta.url);
 const read = name => readFile(new URL(name, root), 'utf8');
 const [html, css, data, app] = await Promise.all(['index.html','style.css','data.js','app.js'].map(read));
 // Inline the app so file:// works without module requests or a local server.
-const localCss = css.replace(/^@import\s+url\([^;]+;\s*/gm, '');
+const image = await readFile(new URL('assets/rust-landscape.png', root));
+const localCss = css.replace(/^@import\s+url\([^;]+;\s*/gm, '').replace("url('./assets/rust-landscape.png')", () => `url('data:image/png;base64,${image.toString('base64')}')`);
 const localScript = data.replace(/^export /gm, '') + '\n' + app.replace(/^import .*?;\s*/m, '');
 const output = html
   .replace('<link rel="stylesheet" href="/style.css">', () => `<style>${localCss}</style>`)
